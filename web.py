@@ -25,7 +25,7 @@ class feature_form(FlaskForm):
 model = ""
 
 @app.route('/', methods=['GET', 'POST'])
-def hello_world():
+def index():
     form = feature_form()
     if form.validate_on_submit():
         user_submitted_features = {}
