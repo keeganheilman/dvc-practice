@@ -33,8 +33,9 @@ def index():
             if i.name == 'csrf_token':
                 continue
             user_submitted_features[i.name] = i.data
-        print(user_submitted_features)
-        return "Submit For " + str(user_submitted_features)
+        # You can use the dictionary user_submitted_features and pass to your model.
+        # you should do that here and return a sentence below.
+        return "This will be displayed with after a user submits your form, run your model and put something here"
     return render_template("form.html", form=form)
 
 
