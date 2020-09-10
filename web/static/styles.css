@@ -6,7 +6,7 @@
     margin-right: auto
 }
 body {
-    background-image: url("/static/back.jpg");
+    background-image: url("back.jpg");
 }
 
 .header {
