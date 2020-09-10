@@ -1,4 +1,7 @@
 {% import "bootstrap/wtf.html" as wtf %}
+{% extends "web.html" %}
+
+{% block content_inner %}
 <form method="post" action="/{{route}}">
   <fieldset>
     {{ wtf.quick_form(form, button_map={'submit':'success'}) }}
@@ -6,3 +9,5 @@
     <button type="button" class="btn"><a href="/">Cancel</a></button>
   </fieldset>
 </form>
+
+{% endblock %}

@@ -35,9 +35,14 @@ def index():
             user_submitted_features[i.name] = i.data
         # You can use the dictionary user_submitted_features and pass to your model.
         # you should do that here and return a sentence below.
-        return "This will be displayed with after a user submits your form, run your model and put something here"
+        return render_template('results.html', msg = "This will be displayed with after a user submits your form, run your model and put something here")
     return render_template("form.html", form=form)
 
 
 if __name__ == '__main__':
     app.run()
+
+
+
+
+#Image Credit Anja Nachtweide
