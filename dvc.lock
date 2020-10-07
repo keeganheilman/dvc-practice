@@ -1,0 +1,22 @@
+clean_trips_without_temp:
+  cmd: python3 scripts/clean_trips_without_temp.py data/trips_without_temp_raw.csv
+    data/trips_without_temp_clean.csv
+  deps:
+  - path: data/trips_without_temp_raw.csv
+    md5: 68fbca84a1f3fef91610be255ec834d3
+  - path: scripts/clean_trips_without_temp.py
+    md5: 8ec8e122627c7ed560c8af7602213a5a
+  outs:
+  - path: data/trips_without_temp_clean.csv
+    md5: 6281603700a1b95032e1680d717cfabc
+train_trip_duration_predictor:
+  cmd: python3 scripts/train_trip_duration_predictor.py -v data/trips_without_temp_clean.csv
+    models/trip_duration_predictor.pkl
+  deps:
+  - path: data/trips_without_temp_clean.csv
+    md5: 6281603700a1b95032e1680d717cfabc
+  - path: scripts/train_trip_duration_predictor.py
+    md5: 4233ed5a46c0e29b62478d5c21b5d25f
+  outs:
+  - path: models/trip_duration_predictor.pkl
+    md5: b5af0333639567c9475577e5949558ac
