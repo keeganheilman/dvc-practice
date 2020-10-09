@@ -13,7 +13,7 @@ from sklearn.metrics import mean_absolute_error
 
 
 def train(trips):
-    X = trips.drop(['trip_duration_minutes'], axis=1)
+    X = trips[['mean_wind', 'inches_precip', 'is_weekday']].copy()
     X['is_weekday'] = X['is_weekday'].astype(str).astype('category')
     y = trips['trip_duration_minutes'].astype(int)
 
