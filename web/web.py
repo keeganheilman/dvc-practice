@@ -28,7 +28,7 @@ class FeatureForm(FlaskForm):
         default='weekday')
 
 
-with open('../models/trip_duration_predictor.pkl', 'rb') as stream:
+with open('models/trip_duration_predictor.pkl', 'rb') as stream:
     model = pickle.load(stream)
 
 
