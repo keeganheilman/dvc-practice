@@ -6,44 +6,54 @@ import pickle
 import pandas as pd
 
 
-# This is the starter code from our webteam.
-# You should feel free to change anything you need to change
-
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, BooleanField, SubmitField, FieldList
+from wtforms import StringField
 from wtforms.validators import DataRequired
-from flask import Flask, redirect, render_template
+from flask import Flask, request, render_template
 from flask_bootstrap import Bootstrap
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'key'  ## The web team will make this more secure in production
 app.debug = True
 Bootstrap(app)
+
 #provide a list of form fields that your model will need
-features = {'feature_name':'Displayname', 'feature_2':'Displayname2'}
-class form(FlaskForm):
-    pass
+features = {
+    'mean_wind': 'Wind Speed (MPH)',
+    'inches_precip': 'Precipitation (inches)',
+}
+
+
 class feature_form(FlaskForm):
     """Create temp form."""
     for i in features:
         setattr(FlaskForm, i, StringField(features[i],[
             DataRequired()]))
 
-model = ""
 
-@app.route('/', methods=['GET', 'POST'])
+with open('models/trip_duration_predictor.pkl', 'rb') as stream:
+    model = pickle.load(stream)
+
+
+@app.route('/', methods=['GET'])
 def index():
-    form = feature_form()
-    if form.validate_on_submit():
-        user_submitted_features = {}
-        for i in form:
-            if i.name == 'csrf_token':
-                continue
-            user_submitted_features[i.name] = i.data
-        # You can use the dictionary user_submitted_features and pass to your model.
-        # you should do that here and return a sentence below.
-        return render_template('results.html', msg = "This will be displayed with after a user submits your form, run your model and put something here")
-    return render_template("form.html", form=form)
+    prediction = '--'  # set a placeholder string for the pridiction value
+    form = feature_form(request.args, meta={'csrf': False})
+
+    if form.validate():
+        user_submitted_features = {
+           field.name: field.data for field in form
+        }
+
+        # create a DataFrame with the user's input
+        user_df = pd.DataFrame(data=[user_submitted_features])
+
+        # use the user_df to get a prediction, and clean it up for the interface
+        prediction = round(model.predict(user_df)[0], 1)
+
+    return render_template(
+        "form.html", form=form,
+        msg='Predicted Trip Duration: ' + str(prediction) + ' minutes')
 
 
 if __name__ == '__main__':
