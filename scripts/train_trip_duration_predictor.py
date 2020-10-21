@@ -16,9 +16,7 @@ def train(trips):
     X = trips[[
         'mean_wind',
         'inches_precip',
-        'is_weekday'
-    ]].copy()
-    X['is_weekday'] = X['is_weekday'].astype(str).astype('category')
+    ]]
     y = trips['trip_duration_minutes'].astype(int)
 
     numeric_features = [
@@ -30,7 +28,7 @@ def train(trips):
         ('scaler', StandardScaler())])
 
     categorical_features = [
-        'is_weekday',
+        # not using categorical features for now
     ]
     categorical_transformer = Pipeline(steps=[
         ('imputer', SimpleImputer(strategy='constant', fill_value='missing')),

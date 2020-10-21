@@ -16,7 +16,7 @@ train_trip_duration_predictor:
   - path: data/trips_without_temp_clean.csv
     md5: 6281603700a1b95032e1680d717cfabc
   - path: scripts/train_trip_duration_predictor.py
-    md5: 3ff7fb65dc60622325e238867b35844d
+    md5: e04c273d83e9294a575381af41dfa56f
   outs:
   - path: models/trip_duration_predictor.pkl
-    md5: adf67098f1620998de645a84cf70b421
+    md5: b4351697b2d18a9adc00918577575480
