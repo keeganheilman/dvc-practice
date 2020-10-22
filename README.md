@@ -3,15 +3,13 @@
 
 ## Setup
 
-Begin by starting up the development web server with these commands, in a terminal:
+Begin by starting up the development web server with this command, in a terminal:
 
-   1. `export FLASK_ENV=development`
-   2. `export FLASK_APP=web/web.py`
-   3. `flask run`
+  - `python we/web.py`
 
-If you get a "FileNotFoundError" error when you load the web app, you will need to run the DVC pipeline to generate the prediction model. (This error is to be expected on your first run.)
+If you get a "FileNotFoundError" error when you load the web app, you will need to run the DVC pipeline to generate thep prediction model. (This error is to be expected on your first run.)
 
-  1. `dvc repro`
+  - `dvc repro`
 
 With the prediction model in place. Stop the Flask server (Ctrl-C) and start it again ("flask run"). You should now get nice interface in the browser that will let you try different feature values and see the prediction from the model.
 
