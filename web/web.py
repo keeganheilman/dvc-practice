@@ -41,6 +41,8 @@ def index():
     form = feature_form(request.args, meta={'csrf': False})
 
     if form.validate():
+
+        # convert the HTML form's fields into a dictionary
         user_submitted_features = {
            field.name: field.data for field in form
         }
