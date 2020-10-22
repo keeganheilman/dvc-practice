@@ -5,7 +5,7 @@
 
 Begin by starting up the development web server with this command, in a terminal:
 
-  - `python we/web.py`
+  - `python web/web.py`
 
 If you get a "FileNotFoundError" error when you load the web app, you will need to run the DVC pipeline to generate thep prediction model. (This error is to be expected on your first run.)
 
