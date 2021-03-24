@@ -16,12 +16,16 @@ def train(trips):
     X = trips[[
         'mean_wind',
         'inches_precip',
+        'temp_min',
+        'temp_max',
     ]]
     y = trips['trip_duration_minutes'].astype(int)
 
     numeric_features = [
         'mean_wind',
         'inches_precip',
+        'temp_min',
+        'temp_max',
     ]
     numeric_transformer = Pipeline(steps=[
         ('imputer', SimpleImputer(strategy='median')),
@@ -65,7 +69,7 @@ if __name__ == '__main__':
     import argparse
 
     parser = argparse.ArgumentParser()
-    parser.add_argument('input_file', help='cleaned trips data file (CSV)')
+    parser.add_argument('input_file', help='cleaned trips with ranged weather data file (CSV)')
     parser.add_argument('output_file', help='trained model (PKL)')
     parser.add_argument(
         '-v', '--verbose', action='store_true',

@@ -21,6 +21,8 @@ Bootstrap(app)
 features = {
     'mean_wind': 'Wind Speed (MPH)',
     'inches_precip': 'Precipitation (inches)',
+    'temp_min': 'Minimum Temperature of the Day',
+    'temp_max': 'Maximum Temperature of the Day',
 }
 
 

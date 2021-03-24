@@ -7,11 +7,20 @@ stages:
     - scripts/clean_trips_without_temp.py
     outs:
     - data/trips_without_temp_clean.csv
+  trips_with_all_weather:
+    cmd: python3 scripts/combine_temp.py data/trips_without_temp_clean.csv data/temp_by_date.csv
+      data/trips_with_all_weather.csv
+    deps:
+    - scripts/combine_temp.py
+    - data/trips_without_temp_clean.csv
+    - data/temp_by_date.csv
+    outs:
+    - data/trips_with_all_weather.csv
   train_trip_duration_predictor:
-    cmd: python3 scripts/train_trip_duration_predictor.py -v data/trips_without_temp_clean.csv
+    cmd: python3 scripts/train_trip_duration_predictor.py -v data/trips_with_all_weather.csv
       models/trip_duration_predictor.pkl
     deps:
-    - data/trips_without_temp_clean.csv
+    - data/trips_with_all_weather.csv
     - scripts/train_trip_duration_predictor.py
     outs:
     - models/trip_duration_predictor.pkl
