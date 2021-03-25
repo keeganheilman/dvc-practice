@@ -33,3 +33,16 @@ trips_with_all_weather:
   outs:
   - path: data/trips_with_all_weather.csv
     md5: 70e5221b4bd1ac7ff32bd85c3ba74066
+ombine_temp:
+  cmd: python3 scripts/combine_temp.py data/trips_without_temp_clean.csv data/temp_by_date.csv
+    data/trips_with_all_weather.csv
+  deps:
+  - path: data/temp_by_date.csv
+    md5: 5169705b58ec7238de353cd801189e8e
+  - path: data/trips_without_temp_clean.csv
+    md5: 6281603700a1b95032e1680d717cfabc
+  - path: scripts/combine_temp.py
+    md5: c6ec4818c71e1a0bac94ee2bd262266e
+  outs:
+  - path: data/trips_with_all_weather.csv
+    md5: 70e5221b4bd1ac7ff32bd85c3ba74066

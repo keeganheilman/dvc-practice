@@ -7,7 +7,7 @@ stages:
     - scripts/clean_trips_without_temp.py
     outs:
     - data/trips_without_temp_clean.csv
-  trips_with_all_weather:
+  combine_temp:
     cmd: python3 scripts/combine_temp.py data/trips_without_temp_clean.csv data/temp_by_date.csv
       data/trips_with_all_weather.csv
     deps:
